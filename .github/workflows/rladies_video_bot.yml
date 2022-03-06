@@ -2,11 +2,14 @@ on:
   schedule:
   - cron: '0 */1 * * *'
   
-name: rladies_videos_bot
 
 jobs:
-  rladies_videos_bot-post:
-  steps:
+  render:
+    name: rladies_videos_bot
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@v1
       - name: Install tidyRSS package
         run: Rscript -e 'install.packages("tidyRSS", dependencies = TRUE)'
       - name: Install readr package
