@@ -1,10 +1,11 @@
+name: rladies_videos_bot
+
 on:
   schedule:
   - cron: '0 */6 * * *'
 
 jobs:
   render:
-  name: rladies_videos_bot
   runs-on: macOS-latest
   steps:
     - uses: actions/checkout@v2
