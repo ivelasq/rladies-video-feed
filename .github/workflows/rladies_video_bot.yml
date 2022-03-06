@@ -28,5 +28,5 @@ jobs:
         run: Rscript -e 'install.packages("flexdashboard", dependencies = TRUE)'  
       - name: Install bslib package
         run: Rscript -e 'install.packages("bslib", dependencies = TRUE)'  
-      - name: Create and update tweet
+      - name: Create and update dashboard
         run: Rscript -e 'rmarkdown::render("index.Rmd", output_format = "html_document")'
