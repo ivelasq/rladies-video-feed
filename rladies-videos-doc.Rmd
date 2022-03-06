@@ -1,0 +1,57 @@
+---
+title: "R-Ladies Video Feed"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme:
+      bg: "#FDF7F7"
+      fg: "#88398A" # purple
+      primary: "#88398A" # purple
+      base_font:
+        google: "Lato"
+      code_font:
+        google: "Inconsolata"
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(bslib)
+source("data-processing.R", local = knitr::knit_global())
+```
+
+Sidebar {.sidebar}
+-----------------------------------------------------------------------
+
+The purpose of this dashboard is to provide a running feed of R-Ladies videos posted to YouTube.
+
+Currently, the feed includes these chapters:
+
+```{r}
+dat_feeds2 %>% 
+  distinct(channel_image_url) %>% 
+  pull() %>% 
+  shiny::HTML()
+```
+
+Column {data-width=900}
+-----------------------------------------------------------------------
+
+### R-Ladies Video Feed
+
+<style>
+.dataTables_scrollBody {
+    max-height: 100% !important;
+}
+</style>
+
+```{r}
+dat_feeds2 %>%
+  select(-channel_image_url) %>%
+  datatable(
+    colnames = c('Date', 'Chapter', 'Video'),
+    filter = 'top',
+    escape = FALSE,
+    height = '1000'
+  )
+```
