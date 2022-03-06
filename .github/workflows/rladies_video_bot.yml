@@ -7,8 +7,6 @@ name: rladies_videos_bot
 jobs:
   rladies_videos_bot-post:
   steps:
-      - uses: actions/checkout@main
-      - uses: r-lib/actions/setup-r@v2
       - name: Install tidyRSS package
         run: Rscript -e 'install.packages("tidyRSS", dependencies = TRUE)'
       - name: Install readr package
