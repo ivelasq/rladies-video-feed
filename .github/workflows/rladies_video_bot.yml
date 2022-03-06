@@ -6,7 +6,6 @@ name: rladies_videos_bot
 
 jobs:
   rladies_videos_bot-post:
-  runs-on: macOS-latest
   steps:
       - uses: actions/checkout@main
       - uses: r-lib/actions/setup-r@v2
