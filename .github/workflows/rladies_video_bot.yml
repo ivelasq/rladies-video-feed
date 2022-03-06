@@ -29,4 +29,4 @@ jobs:
       - name: Install bslib package
         run: Rscript -e 'install.packages("bslib", dependencies = TRUE)'  
       - name: Create and update tweet
-        run: Rscript -e 'rmarkdown::render("rladies-videos-doc.Rmd", output_format = "html_document")'
+        run: Rscript -e 'rmarkdown::render("index.Rmd", output_format = "html_document")'
