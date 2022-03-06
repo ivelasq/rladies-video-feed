@@ -70,4 +70,4 @@ dat_feeds2 <-
     date = as.Date(str_sub(entry_published, 1, 10))
   ) %>%
   arrange(desc(entry_published)) %>%
-  select(date, channel_url, video_url, channel_image_url)
+  select(date, chapter, channel_url, video_url, channel_image_url)

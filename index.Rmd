@@ -3,6 +3,8 @@ title: "R-Ladies YouTube Video Feed"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
+    navbar:
+      - { icon: "fa-github", href: "https://github.com/ivelasq/rladies-video-feed", align: right }
     vertical_layout: fill
     theme:
       bg: "#FDF7F7"
@@ -29,8 +31,8 @@ Currently, the feed includes these channels:
 
 ```{r}
 dat_feeds2 %>% 
+  arrange(chapter) %>% 
   distinct(channel_image_url) %>% 
-  arrange(desc(channel_image_url)) %>% 
   pull() %>% 
   shiny::HTML()
 ```
@@ -38,7 +40,7 @@ dat_feeds2 %>%
 Column {data-width=900}
 -----------------------------------------------------------------------
 
-### List of Videos
+### By default, the list is sorted by latest video.
 
 <style>
 .dataTables_scrollBody {
@@ -48,11 +50,14 @@ Column {data-width=900}
 
 ```{r}
 dat_feeds2 %>%
-  select(-channel_image_url) %>%
+  select(-chapter,-channel_image_url) %>%
   datatable(
     colnames = c('Date', 'Channel', 'Video'),
     filter = 'top',
     escape = FALSE,
-    height = '1000'
+    height = '1000',
+    options = list(columnDefs = list(
+      list(className = 'dt-middle', targets = "_all")
+    ))
   )
 ```
