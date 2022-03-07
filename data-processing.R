@@ -38,7 +38,7 @@ for (i in 1:nrow(dat_urls)) {
   tmp <-
     dat_urls[i, ][4] %>%
     tidyfeed(.,
-             config = list('max-results' = 50))
+             config = list('maxResults' = 50))
   
   dat_feeds <- rbind(dat_feeds, tmp)
 }
