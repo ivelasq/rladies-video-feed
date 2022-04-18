@@ -1,0 +1,72 @@
+---
+title: "R-Ladies YouTube Video Feed"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    navbar:
+      - { icon: "fa-github", href: "https://github.com/ivelasq/rladies-video-feed", align: right }
+    vertical_layout: fill
+    theme:
+      bg: "#FDF7F7"
+      fg: "#88398A" # purple
+      primary: "#88398A" # purple
+      base_font:
+        google: "Lato"
+      code_font:
+        google: "Inconsolata"
+---
+
+# Flexdashboard - OLD
+# This script works. Unfortunately,
+# the YouTube RSS feed only grabs
+# the latest 15 videos whereas the
+# YouTube API will give you all the
+# videos from a channel.
+# But, I'm keeping this file in case
+# it's helpful to you.
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(bslib)
+source("data-processing.R", local = knitr::knit_global())
+```
+
+Sidebar {.sidebar}
+-----------------------------------------------------------------------
+
+The purpose of this dashboard is to provide a running feed of R-Ladies videos posted to YouTube. It is refreshed every six hours.
+
+Currently, the feed includes these channels:
+
+```{r}
+dat_feeds2 %>% 
+  arrange(chapter) %>% 
+  distinct(channel_image_url) %>% 
+  pull() %>% 
+  shiny::HTML()
+```
+
+Column {data-width=900}
+-----------------------------------------------------------------------
+
+### By default, the list is sorted by latest video.
+
+<style>
+.dataTables_scrollBody {
+    max-height: 100% !important;
+}
+</style>
+
+```{r}
+dat_feeds2 %>%
+  select(-chapter,-channel_image_url) %>%
+  datatable(
+    colnames = c('Date', 'Channel', 'Video'),
+    filter = 'top',
+    escape = FALSE,
+    height = '1000',
+    options = list(columnDefs = list(
+      list(className = 'dt-middle', targets = "_all")
+    ))
+  )
+```

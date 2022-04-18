@@ -2,7 +2,7 @@
 
 # Libraries ---------------------------------------------------------------
 
-library(tidyRSS)
+library(tuber)
 library(readr)
 library(dplyr)
 library(stringr)
@@ -32,29 +32,36 @@ dat_urls <-
     ),
   )
 
-dat_feeds  <- NULL
+yt_oauth(
+  app_id = Sys.getenv("YOUTUBE_CLIENT"),
+  app_secret = Sys.getenv("YOUTUBE_CLIENT_SECRET")
+)
+
+dat_videos <- NULL
 
 for (i in 1:nrow(dat_urls)) {
   tmp <-
-    dat_urls[i, ][4] %>%
-    tidyfeed(.,
-             config = list('maxResults' = 50))
+    dat_urls[i, ]["id"] %>%
+    pull() %>%
+    list_channel_videos(.,
+                        part = "snippet",
+                        config = list('maxResults' = 200))
   
-  dat_feeds <- rbind(dat_feeds, tmp)
+  dat_videos <- bind_rows(dat_videos, tmp)
 }
 
 dat_join <-
-  dat_feeds %>%
-  left_join(., dat_urls, by = "feed_url")
+  dat_videos %>%
+  left_join(., dat_urls, by = c("snippet.channelId" = "id"))
 
-dat_feeds2 <-
+dat_dashboard_dat <-
   dat_join %>%
   mutate(
     video_url = paste0(
-      "<a href='",
-      entry_link,
+      "<a href='https://www.youtube.com/watch?v=",
+      snippet.resourceId.videoId,
       "' target='_blank'>",
-      entry_title,
+      snippet.title,
       "</a>"
     ),
     channel_url = paste0(
@@ -67,7 +74,7 @@ dat_feeds2 <-
       chapter,
       "</a>"
     ),
-    date = as.Date(str_sub(entry_published, 1, 10))
+    date = as.Date(str_sub(snippet.publishedAt, 1, 10))
   ) %>%
-  arrange(desc(entry_published)) %>%
+  arrange(desc(snippet.publishedAt)) %>%
   select(date, chapter, channel_url, video_url, channel_image_url)

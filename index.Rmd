@@ -5,7 +5,6 @@ output:
     orientation: columns
     navbar:
       - { icon: "fa-github", href: "https://github.com/ivelasq/rladies-video-feed", align: right }
-    vertical_layout: fill
     theme:
       bg: "#FDF7F7"
       fg: "#88398A" # purple
@@ -30,7 +29,7 @@ The purpose of this dashboard is to provide a running feed of R-Ladies videos po
 Currently, the feed includes these channels:
 
 ```{r}
-dat_feeds2 %>% 
+dat_join %>% 
   arrange(chapter) %>% 
   distinct(channel_image_url) %>% 
   pull() %>% 
@@ -49,7 +48,7 @@ Column {data-width=900}
 </style>
 
 ```{r}
-dat_feeds2 %>%
+dat_dashboard_dat %>%
   select(-chapter,-channel_image_url) %>%
   datatable(
     colnames = c('Date', 'Channel', 'Video'),
