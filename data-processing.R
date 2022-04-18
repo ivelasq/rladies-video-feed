@@ -69,7 +69,7 @@ dat_dashboard_dat <-
       image,
       "' alt='Hex Sticker for Chapter' width='40'></img>",
       "<a href='https://www.youtube.com/channel/",
-      id,
+      snippet.channelId,
       "' target='_blank'>",
       chapter,
       "</a>"
