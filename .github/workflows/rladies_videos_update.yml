@@ -14,7 +14,7 @@ jobs:
       - name: Install remotes package
         run: Rscript -e 'install.packages("remotes")'
       - name: Install tuber package
-        run: Rscript -e 'install_github("soodoku/tuber")'
+        run: Rscript -e 'remotes::install_github("soodoku/tuber")'
       - name: Install readr package
         run: Rscript -e 'install.packages("readr", dependencies = TRUE)'
       - name: Install dplyr package
