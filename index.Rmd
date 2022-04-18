@@ -24,7 +24,7 @@ source("data-processing.R", local = knitr::knit_global())
 Sidebar {.sidebar}
 -----------------------------------------------------------------------
 
-The purpose of this dashboard is to provide a running feed of R-Ladies videos posted to YouTube. It is refreshed every six hours.
+The purpose of this dashboard is to provide a running feed of R-Ladies videos posted to YouTube. It is refreshed every 12 hours.
 
 Currently, the feed includes these channels:
 
