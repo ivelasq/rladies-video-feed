@@ -21,3 +21,7 @@ jobs:
       - name: Create and update dashboard
         run: |
           Rscript -e 'rmarkdown::render("index.Rmd", output_format = "html_document")'
+
+        env:
+          YOUTUBE_CLIENT: ${{ secrets.YOUTUBE_CLIENT }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
