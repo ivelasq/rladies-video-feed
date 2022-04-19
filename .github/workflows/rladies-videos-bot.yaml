@@ -1,0 +1,28 @@
+on: [push]
+
+name: rladies-videos-bot
+
+jobs:
+  rladies-videos-bot:
+    runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      YOUTUBE_CLIENT: ${{ secrets.YOUTUBE_CLIENT }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: r-lib/actions/setup-pandoc@v2
+      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache-version: 2
+      - name: Render and commit dashboard
+        run: |
+          Rscript -e 'rmarkdown::render("index.Rmd", output_format = "html_document")'
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git add index.html
+          git commit -m '[Bot] Render and commit dashboard' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
