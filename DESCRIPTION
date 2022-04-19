@@ -1,0 +1,22 @@
+Package: rladies-video-feed
+Title: R-Ladies Video Feed R Markdown Dashboard
+Version: 0.0.0.9000
+Authors@R: 
+    person("Isabella", "Velásquez", , "ivelasq@gmail.com", role = c("aut", "cre"))
+Description: R-Ladies video feed R markdown dashboard.
+License: MIT + file LICENSE
+Imports: 
+    bslib,
+    dplyr,
+    DT,
+    flexdashboard,
+    readr,
+    rmarkdown,
+    shiny,
+    stringr,
+    tuber (>= 0.9.9)
+Remotes: 
+    soodoku/tuber
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
