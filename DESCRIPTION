@@ -14,9 +14,7 @@ Imports:
     rmarkdown,
     shiny,
     stringr,
-    tuber (>= 0.9.9)
-Remotes: 
-    soodoku/tuber
+    tuber
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
