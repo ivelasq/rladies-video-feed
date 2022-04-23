@@ -32,18 +32,6 @@ dat_urls <-
     ),
   )
 
-if (interactive()) {
-  yt_oauth(
-    app_id = Sys.getenv("YOUTUBE_CLIENT"),
-    app_secret = Sys.getenv("YOUTUBE_CLIENT_SECRET")
-  )
-} else {
-  yt_oauth(
-    app_id = "${{ secrets.YOUTUBE_CLIENT }}",
-    app_secret = "${{ secrets.YOUTUBE_CLIENT_SECRET }}"
-  )
-}
-
 dat_videos <- NULL
 
 for (i in 1:nrow(dat_urls)) {
