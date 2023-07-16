@@ -8,11 +8,6 @@ library(dplyr)
 library(stringr)
 library(DT)
 
-# Auth --------------------------------------------------------------------
-
-youtube_api_key <-tuber::yt_get_key()
-tuber::yt_set_key(youtube_api_key)
-
 # Data --------------------------------------------------------------------
 
 dat <-
