@@ -24,16 +24,16 @@ source("data-processing.R", local = knitr::knit_global())
 Sidebar {.sidebar}
 -----------------------------------------------------------------------
 
-The purpose of this dashboard is to provide a running feed of R-Ladies videos posted to YouTube. It is refreshed every 12 hours.
+The purpose of this dashboard is to provide a running feed of R-Ladies videos posted to YouTube. It is refreshed every 24 hours.
 
 Currently, the feed includes these channels:
 
 ```{r}
 dat_join %>% 
-  arrange(chapter) %>% 
-  distinct(channel_image_url) %>% 
-  pull() %>% 
-  shiny::HTML()
+  dplyr::arrange(chapter) %>% 
+  dplyr::distinct(channel_image_url) %>% 
+  dplyr::pull() %>% 
+  htmltools::HTML(.noWS = "outside")
 ```
 
 Column {data-width=900}
@@ -48,13 +48,14 @@ Column {data-width=900}
 </style>
 
 ```{r}
-dat_dashboard_dat %>%
-  select(-chapter,-channel_image_url) %>%
-  datatable(
+dat_dashboard %>%
+  dplyr::select(-chapter, -channel_image_url) %>%
+  DT::datatable(
     colnames = c('Date', 'Channel', 'Video'),
     filter = 'top',
     escape = FALSE,
     height = '1000',
+    elementId = 'dashboard',
     options = list(columnDefs = list(
       list(className = 'dt-middle', targets = "_all")
     ))

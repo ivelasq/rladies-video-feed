@@ -8,6 +8,11 @@ library(dplyr)
 library(stringr)
 library(DT)
 
+# Auth --------------------------------------------------------------------
+
+youtube_api_key <-tuber::yt_get_key()
+tuber::yt_set_key(youtube_api_key)
+
 # Data --------------------------------------------------------------------
 
 dat <-
@@ -36,22 +41,24 @@ dat_videos <- NULL
 
 for (i in 1:nrow(dat_urls)) {
   tmp <-
-    dat_urls[i, ]["id"] %>%
-    pull() %>%
-    list_channel_videos(.,
-                        part = "snippet",
-                        config = list('maxResults' = 200))
-  
-  dat_videos <- bind_rows(dat_videos, tmp)
+    dat_urls[i,]["id"] %>%
+    dplyr::pull() %>%
+    tuber::list_channel_videos(
+      .,
+      part = "snippet",
+      config = list('maxResults' = 200),
+      auth = "key"
+    )
+  dat_videos <- dplyr::bind_rows(dat_videos, tmp)
 }
 
 dat_join <-
   dat_videos %>%
-  left_join(., dat_urls, by = c("snippet.channelId" = "id"))
+  dplyr::left_join(., dat_urls, by = join_by("snippet.channelId" == "id"))
 
-dat_dashboard_dat <-
+dat_dashboard <-
   dat_join %>%
-  mutate(
+  dplyr::mutate(
     video_url = paste0(
       "<a href='https://www.youtube.com/watch?v=",
       snippet.resourceId.videoId,
@@ -71,5 +78,5 @@ dat_dashboard_dat <-
     ),
     date = as.Date(str_sub(snippet.publishedAt, 1, 10))
   ) %>%
-  arrange(desc(snippet.publishedAt)) %>%
-  select(date, chapter, channel_url, video_url, channel_image_url)
+  dplyr::arrange(desc(snippet.publishedAt)) %>%
+  dplyr::select(date, chapter, channel_url, video_url, channel_image_url)

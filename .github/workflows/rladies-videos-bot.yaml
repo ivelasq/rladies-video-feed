@@ -1,4 +1,6 @@
-on: [push]
+on:
+  schedule:
+    - cron: '0 1 * * *'
 
 name: rladies-videos-bot
 
@@ -7,22 +9,17 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      YOUTUBE_CLIENT: ${{ secrets.YOUTUBE_CLIENT }}
-      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      YOUTUBE_KEY: ${{ secrets.YOUTUBE_KEY }}
+      TUBER_KEY: ${{ secrets.TUBER_KEY }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: r-lib/actions/setup-pandoc@v2
       - uses: r-lib/actions/setup-r@v2
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 2
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v0.4.0'
-        with:
-          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+          extra-packages: soodoku/tuber
       - name: Render and commit dashboard
         run: |
           Rscript -e 'rmarkdown::render("index.Rmd", output_format = "html_document")'
