@@ -8,7 +8,6 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       YOUTUBE_KEY: ${{ secrets.YOUTUBE_KEY }}
-      TUBER_KEY: ${{ secrets.TUBER_KEY }}
     steps:
       - uses: actions/checkout@v3
         with:
