@@ -12,8 +12,6 @@ output:
       primary: "#88398A" # purple
       base_font:
         google: "Lato"
-      code_font:
-        google: "Inconsolata"
 ---
 
 ```{r setup, include=FALSE}
