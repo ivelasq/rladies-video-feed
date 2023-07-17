@@ -6,7 +6,7 @@ output:
     navbar:
       - { icon: "fa-github", href: "https://github.com/ivelasq/rladies-video-feed", align: right }
     theme:
-      version: 3
+      version: 4
       bg: "#FDF7F7"
       fg: "#88398A" # purple
       primary: "#88398A" # purple
