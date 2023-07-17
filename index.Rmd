@@ -11,9 +11,9 @@ output:
       fg: "#88398A" # purple
       primary: "#88398A" # purple
       base_font:
-        font_google: "Lato"
+        google: "Lato"
       code_font:
-        font_google: "Inconsolata"
+        google: "Inconsolata"
 ---
 
 ```{r setup, include=FALSE}
