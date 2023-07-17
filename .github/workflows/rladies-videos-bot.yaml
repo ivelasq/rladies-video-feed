@@ -1,6 +1,4 @@
-on:
-  schedule:
-    - cron: '0 0 * * *'
+on: push
 
 name: rladies-videos-bot
 
