@@ -2,3 +2,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.httr-oauth$
+^rladies-video-feed\.Rcheck$
+^rladies-video-feed.*\.tar\.gz$
+^rladies-video-feed.*\.tgz$
