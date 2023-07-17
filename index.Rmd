@@ -6,13 +6,14 @@ output:
     navbar:
       - { icon: "fa-github", href: "https://github.com/ivelasq/rladies-video-feed", align: right }
     theme:
+      version: 5
       bg: "#FDF7F7"
       fg: "#88398A" # purple
       primary: "#88398A" # purple
       base_font:
-        google: "Lato"
+        font_google: "Lato"
       code_font:
-        google: "Inconsolata"
+        font_google: "Inconsolata"
 ---
 
 ```{r setup, include=FALSE}
