@@ -20,7 +20,7 @@ library(bslib)
 source("data-processing.R", local = knitr::knit_global())
 ```
 
-Sidebar {.sidebar}
+Channels {.sidebar}
 -----------------------------------------------------------------------
 
 The purpose of this dashboard is to provide a running feed of R-Ladies videos posted to YouTube. It is refreshed every 24 hours.
