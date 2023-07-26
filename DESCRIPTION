@@ -3,7 +3,7 @@ Title: R-Ladies Video Feed Flexdashboard
 Version: 0.0.0.9000
 Authors@R:
     person("Isabella", "Velásquez", , "ivelasq@gmail.com", role = c("aut", "cre"))
-    person("Gustavo", "Velásquez", , "gvelasq2github@gmail.com", role = c("aut", "cre))
+    person("Gustavo", "Velásquez", , "gvelasq2github@gmail.com", role = c("aut", "cre"))
 Description: "An automated dashboard for R-Ladies YouTube videos."
 License: MIT + file LICENSE
 Imports: 
