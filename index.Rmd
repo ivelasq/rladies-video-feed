@@ -2,7 +2,8 @@
 title: "R-Ladies YouTube Video Feed"
 output: 
   flexdashboard::flex_dashboard:
-    includes-in-header: plausible.html
+    includes:
+       in_header: plausible.html
     orientation: columns
     navbar:
       - { icon: "fa-github", href: "https://github.com/ivelasq/rladies-video-feed", align: right }
