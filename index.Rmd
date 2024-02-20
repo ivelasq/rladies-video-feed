@@ -3,7 +3,7 @@ title: "R-Ladies YouTube Video Feed"
 output: 
   flexdashboard::flex_dashboard:
     pandoc_args:
-      include-in_header: plausible.html
+      include-in-header: plausible.html
     orientation: columns
     navbar:
       - { icon: "fa-github", href: "https://github.com/ivelasq/rladies-video-feed", align: right }
