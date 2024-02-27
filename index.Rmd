@@ -2,8 +2,6 @@
 title: "R-Ladies YouTube Video Feed"
 output: 
   flexdashboard::flex_dashboard:
-    includes:
-      in_header: plausible.html
     orientation: columns
     navbar:
       - { icon: "fa-github", href: "https://github.com/ivelasq/rladies-video-feed", align: right }
@@ -20,6 +18,10 @@ output:
 library(flexdashboard)
 library(bslib)
 source("data-processing.R", local = knitr::knit_global())
+```
+
+```{r}
+htmltools::includeScript("plausible.html")
 ```
 
 Channels {.sidebar}
