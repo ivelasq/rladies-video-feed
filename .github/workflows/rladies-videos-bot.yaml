@@ -24,7 +24,7 @@ jobs:
       - name: Render and commit dashboard
         run: |
           Rscript -e "rmarkdown::render('index.Rmd')"
-          sed -i "" "s/<\/head>/<script defer data-domain=\"ivelasq.github.io\/rladies-video-feed\" src=\"https:\/\/plausible.io\/js\/script.js\"><\/script>\n&/" index.html
+          sed -i "s/<\/head>/<script defer data-domain='ivelasq.github.io\/rladies-video-feed' src='https:\/\/plausible.io\/js\/script.js'><\/script>\n&/" index.html
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add index.html
