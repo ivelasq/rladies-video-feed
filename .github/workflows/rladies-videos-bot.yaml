@@ -20,13 +20,13 @@ jobs:
           use-public-rspm: true
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: soodoku/tuber
+          extra-packages: gojiplus/tuber
       - name: Render and commit dashboard
         run: |
-          Rscript -e 'rmarkdown::render("index.Rmd")'
-          sed -i '' 's/<\/head>/<script defer data-domain="ivelasq.github.io\/rladies-video-feed" src="https:\/\/plausible.io\/js\/script.js"><\/script>\n&/' index.html
+          Rscript -e "rmarkdown::render('index.Rmd')"
+          sed -i "" "s/<\/head>/<script defer data-domain=\"ivelasq.github.io\/rladies-video-feed\" src=\"https:\/\/plausible.io\/js\/script.js\"><\/script>\n&/" index.html
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add index.html
-          git commit -m '[Bot] Render and commit dashboard' || echo "No changes to commit"
+          git commit -m "[Bot] Render and commit dashboard" || echo "No changes to commit"
           git push origin || echo "No changes to commit"
